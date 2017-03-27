@@ -1,0 +1,48 @@
+.button_white {
+  text-align: center;
+  padding-bottom: 30px;
+  input {
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    background-color: $white;
+    padding: 10px 25px;
+
+    &:hover {
+      background-color: $pink;
+      color:$white;
+    }
+  }
+}
+  .button_red {
+    @extend .button_white;
+    input {
+      border: 1px solid $pink;
+      background-color: $pink;
+      &:hover {
+        background-color: $white;
+        color: $pink;
+        border: 1px solid $white;
+      }
+    }
+  }
+.small-btn{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 3px;
+  padding: 7px 15px 7px 15px;
+  background-color:  $pink;
+
+  &:hover {
+    background-color: $white;
+    color: $pink;
+    border: 1px solid $white;
+  }
+
+}
+
+.small-btn-two{
+ @extend .small-btn;
+  background: url("../../images/sailboat-kopia.png") no-repeat 20% center  $pink;
+  padding: 7px 15px 7px 35px;
+}
