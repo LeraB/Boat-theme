@@ -11,6 +11,7 @@
 
 ?>
 
+
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
@@ -18,13 +19,15 @@
 
             <div  >
                 <h4>TOP LOCATIONS</h4>
-                <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Sit amet consectetur</a></li>
-                    <li><a href="#">Adipisicing elit</a></li>
-                    <li><a href="#">Eiusmod tempor</a></li>
-                    <li><a href="#">Incididunt ut labore</a></li>
-                </ul></div>
+                <?php if ( is_active_sidebar( 'true_foot' ) ) : ?>
+
+                    <div id="true-foot" class="sidebar">
+
+                        <?php dynamic_sidebar( 'true_foot' ); ?>
+
+                    </div>
+
+                <?php endif; ?></div>
             <div>
                 <h4>FEATURED BOATS</h4>
                 <ul>
@@ -55,11 +58,7 @@
                 </ul>
             </div>
         </div>
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'boat' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'boat' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'boat' ), 'boat', '<a href="https://automattic.com/" rel="designer">Underscores.me</a>' ); ?>
-		</div><!-- .site-info -->
+		<!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

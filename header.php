@@ -12,12 +12,12 @@
 <div id="page" class="site">
     <header id="masthead" class="site-header" role="banner">
         <div class="site-branding">
+            <div class="log">
 
+            </div>
         </div>
     <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
-        <div class="log">
-            <a href="#"> <img src="images/inteligentny-obiekt-wektorowy.png" alt="logo"></a>
-        </div>
+
         <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
     </nav>
     <div class="header_text">

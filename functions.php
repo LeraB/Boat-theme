@@ -20,6 +20,8 @@ if ( ! function_exists( 'boat_setup' ) ) :
  * as indicating support for post thumbnails.
  */
     function enqueue_styles() {
+        wp_enqueue_style('main',get_template_directory_uri() . '/main.css');
+        wp_enqueue_style('style',get_template_directory_uri() . '/style.css');
         wp_enqueue_style( 'whitesquare-style', get_stylesheet_uri());
         wp_register_style('font-style', 'http://fonts.googleapis.com/css?family=Oswald:400,300');
         wp_enqueue_style( 'font-style');
@@ -160,3 +162,51 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+function font_awesome() {
+    if (!is_admin()) {
+        wp_register_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css');
+        wp_enqueue_style('font-awesome');
+    }
+}
+add_action('wp_enqueue_scripts', 'font_awesome');
+
+register_sidebar( array(
+    'name' => __( 'Destinations', '' ),
+    'id' => 'destinations-statistic',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="numbers_text">',
+    'after_widget' => '</div>',
+    'before_title' => '<div class="numbers">',
+    'after_title' => '</div>',
+) );
+
+register_sidebar( array(
+    'name' => __( 'Cities', '' ),
+    'id' => 'cities-statistic',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="numbers_text">',
+    'after_widget' => '</div>',
+    'before_title' => '<div class="numbers">',
+    'after_title' => '</div>',
+) );
+
+register_sidebar( array(
+    'name' => __( 'Boats', '' ),
+    'id' => 'boats-statistic',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="numbers_text">',
+    'after_widget' => '</div>',
+    'before_title' => '<div class="numbers">',
+    'after_title' => '</div>',
+) );
+
+register_sidebar( array(
+    'name' => __( 'Sailors', '' ),
+    'id' => 'sailors-statistic',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="numbers_text">',
+    'after_widget' => '</div>',
+    'before_title' => '<div class="numbers">',
+    'after_title' => '</div>',
+) );

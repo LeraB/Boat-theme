@@ -1,0 +1,73 @@
+header{
+  background: url("image/3layers.png")center;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 250px;
+
+  nav{
+    .log{
+      background: url("image/inteligentny-obiekt-wektorowy.png");
+      top: 50px;
+      display: inline-block;
+      margin-left: 30px;
+    }
+    ul{
+      float: right;
+      list-style: none;
+      margin-top: 0;
+      li{
+        display: inline-block;
+        margin: 0 15px;
+        a{
+          display: inline-block;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #f9fafe;
+          border: 1px solid #f9fafe;
+          border-radius: 5px;
+          padding: 11px 40px;
+          &:hover{
+            background-color: $pink;
+            color: #ffffff;
+
+          }
+        }
+      }
+    }
+  }
+.header_text{
+  margin-top: 200px;
+  h1, h2 {
+    text-transform: uppercase;
+    text-align: center;
+  }
+  h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+}
+  @media (max-width: 768px) {
+    header {
+      padding-bottom: 150px;
+      nav {
+        ul{
+          li {
+            margin: 5px;
+            a {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+  form{
+    text-align: center;
+    margin-top: 50px;
+
+    }
+  }
+
+

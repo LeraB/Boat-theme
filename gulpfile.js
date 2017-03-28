@@ -25,7 +25,6 @@ gulp.task('styles', function () {
         .pipe(sourcemaps.init())
         .pipe(scss())
         .pipe(autoprefixer({ browsers: ['last 2 versions', 'safari 8', 'ie 11', 'opera 12.1', 'ios 6', 'android 4'] }))
-        .pipe(rebaseUrls())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./'));
 });

@@ -1,0 +1,47 @@
+.block_pictures_two {
+  h2, p {
+    padding-top: 30px;
+    text-align: center;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    Justify-content: space-around;
+    padding-top: 50px;
+    padding-bottom: 80px;
+    list-style: none;
+    li {
+      padding-top: 10px;
+    }
+
+    a{
+      text-decoration: none;
+    }
+  }
+}
+
+.block_pictures{
+  @extend .block_pictures_two;
+
+  ul{
+    li:first-child{
+      width: 66%;
+    }
+  }
+
+  }
+.pictures_text{
+  bottom: 40px;
+  left: 30px;
+  position: absolute;
+  span{
+    display: block;
+    margin-top:7px;
+
+  }
+}
+.pictures_text_two{
+  @extend .pictures_text;
+     bottom: 50px;
+    }
+

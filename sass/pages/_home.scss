@@ -1,0 +1,118 @@
+body {
+.number_block{
+  display: flex;
+  text-align: center;
+  padding: 40px 50px;
+  Justify-content:space-around;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px;
+  margin-top: -60px;
+  background-color: $white;
+
+  li{
+    width: 25%;
+    list-style: none;
+
+    .numbers{
+
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+
+  .numbers_border{
+    border-right: 2px solid  #ccc;
+      }
+}
+.sailboat{
+  color: $pink;
+  position: relative;
+}
+
+  .have_block{
+    background: url("image/two_block_whith_pictures.png") center;
+    background-size: cover;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    h1{
+      padding-top: 150px;
+      text-align: center;
+
+    }
+    p{
+      text-align: center;
+    padding-bottom: 80px ;
+    }
+
+  }
+  
+   }
+
+
+.img-relative{
+  position: relative;
+}
+.pictures_text div{
+  margin-top: 10px;
+  a{
+    margin-right: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .my-container {
+    padding-bottom: 30px;
+    ul.number_block {
+      padding: 10px 0;
+      margin-top: -36px;
+      li {
+        .numbers {
+          font-size: 20px;
+        }
+        .numbers_text {
+          font-size: 12px;
+        }
+      }
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    ul.block_pictures {
+      margin-top: 30px;
+      li {
+        width: 70%;
+        .img-relative {
+          top: 10px;
+          left: 10px;
+          padding: 6px;
+
+        }
+        }
+      }
+
+
+    .button_white {
+      margin-top: 30px;
+      a {
+        padding: 12px 20px;
+      }
+    }
+  }
+
+  .have_block {
+    padding-top: 50px;
+    padding-bottom: 80px;
+    .my-container {
+      font-size: 40px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+
+  }}
+
+
+
+
+
