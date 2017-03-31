@@ -3,21 +3,21 @@ footer{
   padding: 10px;
 
   .footer_conteiner{
-    display: flex;
-    Justify-content:space-around;
+    display: block;
+
   }
-  ul {
-    list-style:none;
-    padding: 0;
-    margin-top: 20px;
-    text-decoration: none;
-    li {
-      margin: 5px 0;
-      a{
-        text-decoration: none;
-         }
-    }
+  .footer-wid-block {
+        display: block;
+        width: 25%;
+        float: left;
   }
+
+  .footer-sml-block{
+    display: block;
+    width: 70%;
+    padding-left: 10%;
+  }
+
   .search_field_{
     padding: 7px 0 7px 5px;
     width: 60%;

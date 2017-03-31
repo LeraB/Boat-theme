@@ -153,10 +153,18 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/extras.php';
 
+
 /**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Register custom post type
+ */
+require get_template_directory() . '/inc/custom-post-types.php';
+
+
 
 /**
  * Load Jetpack compatibility file.
@@ -210,3 +218,244 @@ register_sidebar( array(
     'before_title' => '<div class="numbers">',
     'after_title' => '</div>',
 ) );
+register_sidebar( array(
+    'name' => __( 'Footer-block-one', '' ),
+    'id' => 'footer-block-one',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="footer-sml-block">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4>',
+    'after_title' => '</h4>',
+) );
+register_sidebar( array(
+    'name' => __( 'Footer-block-two', '' ),
+    'id' => 'footer-block-two',
+    'description' => __( '', '' ),
+    'before_widget' =>'<div class="footer-sml-block">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4>',
+    'after_title' => '</h4>',
+) );
+
+register_sidebar( array(
+    'name' => __( 'Footer-block-three', '' ),
+    'id' => 'footer-block-three',
+    'description' => __( '', '' ),
+    'before_widget' => '<div class="footer-sml-block" >',
+    'after_widget' => '</div>',
+    'before_title' => '<h4>',
+    'after_title' => '</h4>',
+) );
+
+
+register_sidebar( array(
+    'name' => __( 'Section 4 text', '' ),
+    'id' => 'Section-4-text',
+    'description' => __( '', '' ),
+    'before_widget' => '<div id="#text-block">',
+    'after_widget' => '</div>',
+    'before_title' => '<h1>',
+    'after_title' => '</h1>',
+) );
+
+function sk_register_theme_customizer( $wp_customize ){
+
+    /*
+     * Failsafe is safe
+     */
+    if ( ! isset( $wp_customize ) ) {
+        return;
+    }
+
+    /**
+     * Add 'Home Top' Section.
+     */
+    $wp_customize->add_section(
+    // $id
+        'sk_section_home_top',
+        // $args
+        array(
+            'title'		    => __( 'Section 4 background', 'theme-slug' ),
+            // 'description'	=> __( 'Some description for the options in the Home Top section', 'theme-slug' ),
+            'active_callback' => 'is_front_page',
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' Setting.
+     */
+    $wp_customize->add_setting(
+    // $id
+        'sk_home_top_background_image',
+        // $args
+        array(
+            'default'		=> get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg',
+            'sanitize_callback'	=> 'esc_url_raw',
+            'transport'		=> 'postMessage'
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' image upload Control.
+     */
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+        // $wp_customize object
+            $wp_customize,
+            // $id
+            'sk_home_top_background_image',
+            // $args
+            array(
+                'settings'		=> 'sk_home_top_background_image',
+                'section'		=> 'sk_section_home_top',
+                'label'			=> __( 'Background Image', 'theme-slug' ),
+                'description'	=> __( 'Select the image to be used .', 'theme-slug' )
+            )
+        )
+    );
+
+}
+
+// Settings API options initilization and validation.
+add_action( 'customize_register', 'sk_register_theme_customizer' );
+
+/**
+ * Writes the Home Top background image out to the 'head' element of the document
+ * by reading the value from the theme mod value in the options table.
+ */
+function sk_customizer_css() {
+    ?>
+    <style type="text/css">
+        <?php
+            if ( get_theme_mod( 'sk_home_top_background_image' ) ) {
+                $home_top_background_image_url = get_theme_mod( 'sk_home_top_background_image' );
+            } else {
+                $home_top_background_image_url = get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg';
+            }
+            // if ( 0 < count( strlen( ( $home_top_background_image_url = get_theme_mod( 'sk_home_top_background_image', sprintf( '%s/images/minimography_005_orig.jpg', get_stylesheet_directory_uri() ) ) ) ) ) ) { ?>
+        .home-top {
+            background-image: url( <?php echo $home_top_background_image_url; ?> );
+        }
+        <?php // } // end if ?>
+    </style>
+    <?php
+} // end sk_customizer_css
+add_action( 'wp_head', 'sk_customizer_css');
+/**
+ * Registers the Theme Customizer Preview with WordPress.
+ *
+ * @package    sk
+ * @since      0.3.0
+ * @version    0.3.0
+ */
+function sk_customizer_live_preview() {
+    wp_enqueue_script(
+        'sk-theme-customizer',
+        get_stylesheet_directory_uri() . '/js/theme-customizer.js',
+        array( 'customize-preview' ),
+        '0.1.0',
+        true
+    );
+} // end sk_customizer_live_preview
+add_action( 'customize_preview_init', 'sk_customizer_live_preview' );
+
+function home_block_bg(){
+    ?>
+<style> .have_block{background-image: url(" <?php echo
+    get_theme_mod( 'sk_home_top_background_image');?>")
+    ;} </style>
+<?php }
+function logo_register_theme_customizer( $wp_customize ){
+
+    if ( ! isset( $wp_customize ) ) {
+        return;
+    }
+
+    $wp_customize->add_section(
+
+        'logo_section_home_top',
+        // $args
+        array(
+            'title'		    => __( 'Logo', 'theme-slug' ),
+            // 'description'	=> __( 'Some description for the options in the Home Top section', 'theme-slug' ),
+            'active_callback' => 'is_front_page',
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' Setting.
+     */
+    $wp_customize->add_setting(
+    // $id
+        'logo_background_image',
+        // $args
+        array(
+            'default'		=> get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg',
+            'sanitize_callback'	=> 'esc_url_raw',
+            'transport'		=> 'postMessage'
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' image upload Control.
+     */
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+        // $wp_customize object
+            $wp_customize,
+            // $id
+            'logo_background_image',
+            // $args
+            array(
+                'settings'		=> 'logo_background_image',
+                'section'		=> 'logo_section_home_top',
+                'label'			=> __( 'Logo Image', 'theme-slug' ),
+                'description'	=> __( 'Select the image to be used .', 'theme-slug' )
+            )
+        )
+    );
+
+}
+
+// Settings API options initilization and validation.
+add_action( 'customize_register', 'logo_register_theme_customizer' );
+
+/**
+ * Writes the Home Top background image out to the 'head' element of the document
+ * by reading the value from the theme mod value in the options table.
+ */
+function logo_customizer_css() {
+    ?>
+    <style type="text/css">
+        <?php
+            if ( get_theme_mod( 'logo_background_image' ) ) {
+                $home_top_background_image_url = get_theme_mod( 'logo_background_image' );
+            } else {
+                $home_top_background_image_url = get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg';
+            }
+            // if ( 0 < count( strlen( ( $home_top_background_image_url = get_theme_mod( 'sk_home_top_background_image', sprintf( '%s/images/minimography_005_orig.jpg', get_stylesheet_directory_uri() ) ) ) ) ) ) { ?>
+        .home-top {
+            background-image: url( <?php echo $home_top_background_image_url; ?> );
+        }
+        <?php // } // end if ?>
+    </style>
+    <?php
+} // end sk_customizer_css
+add_action( 'wp_head', 'logo_customizer_css');
+/**
+ * Registers the Theme Customizer Preview with WordPress.
+ *
+ * @package    sk
+ * @since      0.3.0
+ * @version    0.3.0
+ */
+function customizer_live_preview() {
+    wp_enqueue_script(
+        'sk-theme-customizer',
+        get_stylesheet_directory_uri() . '/js/theme-customizer.js',
+        array( 'customize-preview' ),
+        '0.1.0',
+        true
+    );
+} // end sk_customizer_live_preview
+add_action( 'customize_preview_init', 'sk_customizer_live_preview' );

@@ -24,7 +24,7 @@ get_header(); ?>
             <ul class="number_block">
                 <li>
                     <div class=" numbers_border">
-                       <?php dynamic_sidebar( 'top-area' ); ?>
+                       <?php dynamic_sidebar( 'destinations-statistic' ); ?>
 
                     </div>
 
@@ -32,20 +32,17 @@ get_header(); ?>
                 </li>
                 <li>
                     <div class=" numbers_border" >
-                        <div class="numbers">1,000</div>
-                        <div class="numbers_text" >Cities</div>
+                        <?php dynamic_sidebar( 'cities-statistic' ); ?>
                     </div>
                 </li>
                 <li>
                     <div class=" numbers_border">
-                        <div class="numbers">35,000</div>
-                        <div class="numbers_text">Boats</div>
+                        <?php dynamic_sidebar( 'boats-statistic' ); ?>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <div class="numbers">50,000</div>
-                        <div class="numbers_text">Sailors</div>
+                        <?php dynamic_sidebar( 'sailors-statistic' ); ?>
                     </div>
                 </li>
             </ul>
@@ -56,9 +53,51 @@ get_header(); ?>
             <h2>EXPLORE OUR TOP DESTINATIONS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>
             <div >
+
+                <?php
+
+                $args = array( 'post_type' => 'Product');
+
+
+// The Query
+$query1 = new WP_Query( $args );
+
+if ( $query1->have_posts() ) {
+    // The Loop
+    while ( $query1->have_posts() ) {
+        $query1->the_post();
+        echo '<li>' . get_the_title() . '</li>';
+    }
+
+    /* Restore original Post Data
+     * NB: Because we are using new WP_Query we aren't stomping on the
+     * original $wp_query and it does not need to be reset with
+     * wp_reset_query(). We just need to set the post data back up with
+     * wp_reset_postdata().
+     */
+    wp_reset_postdata();
+}
+
+/* The 2nd Query (without global var) */
+$query2 = new WP_Query( $args2 );
+
+if ( $query2->have_posts() ) {
+    // The 2nd Loop
+    while ( $query2->have_posts() ) {
+        $query2->the_post();
+        echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
+    }
+
+    // Restore original Post Data
+    wp_reset_postdata();
+}
+
+?>
                 <ul>
                     <li>
                         <div class="img-relative">
+
+
                             <img src="images/1pictures.png" >
                             <a href="#" class="small-btn-two">730</a>
                             <img class="sailboat"  src="images/sailboat-kopia.png" >
@@ -120,11 +159,13 @@ get_header(); ?>
         </section>
         <section class="have_block ">
             <div class="my-container">
-                <h1>HAVE YOUR OWN BOAT?</h1>
-                <p>NAVIGARE NECESSE EST, VIVERE NON EST NECESSE</p>
-
+                <?php dynamic_sidebar( 'Section-4-text' ); ?>
+                <style> .have_block{background-image: url(" <?php echo
+    get_theme_mod( 'sk_home_top_background_image');?>")
+                    ;} </style>
                 <div class="button_red" >
-                    <input type="button" class="btn_white btn_make " value="MAKE MONEY WITH YOUR BOAT">
+                    <div class="btn_white btn_make " id="section-4-btn">
+                        <?php wp_nav_menu( array('menu' => 'nav-section-4' )); ?></div>
                 </div>
             </div>
         </section>
