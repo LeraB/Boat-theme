@@ -40,7 +40,22 @@
             </div>
         </div>
 		<!-- .site-info -->
-	</footer><!-- #colophon -->
+	</footer>
+<script>
+
+    $(function(){
+        $( "#acf-field-location" ).keyup(function() {
+            $("#acf-field-location")
+                .geocomplete()
+                .bind("geocode:result", function(event, result){
+
+                });
+
+        });
+
+
+    });
+</script><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

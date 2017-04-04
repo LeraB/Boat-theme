@@ -135,14 +135,23 @@ add_action( 'widgets_init', 'boat_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-
+//function load_custom_wp_admin_style() {
+//    admin_enqueue_scripts( 'google_location', get_template_directory_uri() . '/js/google_location.js', array(), '', true );
+//    wp_enqueue_script( 'custom_wp_admin_css' );
+//}
+//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 
 function boat_scripts() {
 	wp_enqueue_style( 'boat-style', get_stylesheet_uri() );
+    wp_enqueue_script( 'jquery' );
 
-	wp_enqueue_script( 'boat-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    wp_register_script('location', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAZDkoDBNBQdFTvMIRoWC451q_V1gBKvYM&sensor=false&amp;libraries=places');
 
-	wp_enqueue_script( 'boat-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+    wp_enqueue_script( 'boat-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+
+
+    wp_enqueue_script( 'boat-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -174,9 +183,9 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Register custom post type
  */
-require get_template_directory() . '/inc/custom-post-types.php';
+require get_template_directory() . '/inc/custom-post-type.php';
 
-add_action( 'admin_enqueue_scripts', 'function_name' );
+//add_action( 'admin_enqueue_scripts', 'function_name' );
 
 /**
  * Load Jetpack compatibility file.
@@ -405,3 +414,16 @@ function customizer_live_preview() {
     );
 } // end sk_customizer_live_preview
 add_action( 'customize_preview_init', 'sk_customizer_live_preview' );
+
+if (!function_exists('write_log')) {
+    function write_log ( $log )  {
+        if ( true === WP_DEBUG ) {
+            if ( is_array( $log ) || is_object( $log ) ) {
+                error_log( print_r( $log, true ) );
+            } else {
+                error_log( $log );
+            }
+        }
+    }
+}
+
