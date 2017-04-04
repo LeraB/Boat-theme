@@ -62,7 +62,7 @@
 }
 
 .small-btn-two{
- @extend .small-btn;
+  @extend .small-btn;
   background: url("image/sailboat-kopia.png") no-repeat 20% center  $pink;
   padding: 7px 15px 7px 35px;
 }

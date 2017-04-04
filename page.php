@@ -56,100 +56,45 @@ get_header(); ?>
 
                 <?php
 
-                $args = array( 'post_type' => 'Product');
+                $args = array(
+                        'post_type' => 'destinations_product',
+                        'posts_per_page' => 5 ,
+                );
 
 
-// The Query
-$query1 = new WP_Query( $args );
+                        $the_query = new WP_Query( $args );
 
-if ( $query1->have_posts() ) {
-    // The Loop
-    while ( $query1->have_posts() ) {
-        $query1->the_post();
-        echo '<li>' . get_the_title() . '</li>';
-    }
+                            // The Loop
+                            if ($the_query->have_posts() ){
+                                echo '<ul>';
 
-    /* Restore original Post Data
-     * NB: Because we are using new WP_Query we aren't stomping on the
-     * original $wp_query and it does not need to be reset with
-     * wp_reset_query(). We just need to set the post data back up with
-     * wp_reset_postdata().
-     */
-    wp_reset_postdata();
-}
+                                   while ($the_query->have_posts()) :
+                                       $the_query-> the_post();
 
-/* The 2nd Query (without global var) */
-$query2 = new WP_Query( $args2 );
+                                       echo '<li >';
+                                       echo ' <div class="img-relative">';
+                                       ?>
 
-if ( $query2->have_posts() ) {
-    // The 2nd Loop
-    while ( $query2->have_posts() ) {
-        $query2->the_post();
-        echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
-    }
+                                           <a class="sailboat" href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
+                                           <a class="small-btn-two" href="#">  <?php the_field( 'count_of_destination' ) ?></a>
+                                           <div class="pictures_text">
+                                           <?php the_field( 'destination_name' ) ?>
+                                           <span>
+                                              <?php   the_field( 'location_of_destination_' )?>
+                                           </span>
+                                           </div>
 
-    // Restore original Post Data
-    wp_reset_postdata();
-}
+                                           <?php
+                                           '</div>';
+                                           '</li>';
+                                   endwhile;
+                                echo '</ul>';
+                                    wp_reset_postdata();
+                                } else {
+                                    echo '<p>no posts found</p>' ;
+                                }
 
-?>
-                <ul>
-                    <li>
-                        <div class="img-relative">
-
-
-                            <img src="images/1pictures.png" >
-                            <a href="#" class="small-btn-two">730</a>
-                            <img class="sailboat"  src="images/sailboat-kopia.png" >
-                            <div  class="pictures_text_two">
-                                Figueira da Foz
-                                <span>Portugal</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn-two">621</a>
-                            <a href="#">   <img class="img" src="images/2pictures.png">
-                            </a>
-                            <div  class="pictures_text">
-                                Ibiza
-                                <span>Spain</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn-two">543</a>
-                            <a href="#">   <img class="img" src="images/3pictures.png" >
-                            </a>
-                            <div  class="pictures_text">
-                                Palma de Mallorca
-                                <span>Spain</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn-two">495</a>
-                            <a href="#"><img class="img" src="images/4pictures.png" ></a>
-                            <div  class="pictures_text">
-                                Portofino
-                                <span>Italy</span>
-                            </div>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn-two">402</a>
-                            <a href="#">   <img class="img" src="images/5pictures.png" ></a>
-                            <div  class="pictures_text">
-                                Port Hercules
-                                <span>Monaco</span>
-                            </div>
-                        </div>
-                    </li>
+                        ?>
                 </ul>
                 <div class="button_white" >
                     <input  type="button" value="EXPLORE MORE DESTINATIONS">
@@ -161,8 +106,7 @@ if ( $query2->have_posts() ) {
             <div class="my-container">
                 <?php dynamic_sidebar( 'Section-4-text' ); ?>
                 <style> .have_block{background-image: url(" <?php echo
-    get_theme_mod( 'sk_home_top_background_image');?>")
-                    ;} </style>
+                             get_theme_mod( 'sk_home_top_background_image');?>")    ;} </style>
                 <div class="button_red" >
                     <div class="btn_white btn_make " id="section-4-btn">
                         <?php wp_nav_menu( array('menu' => 'nav-section-4' )); ?></div>
@@ -175,72 +119,51 @@ if ( $query2->have_posts() ) {
             <h2>FEATURED BOATS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
             <div >
-                <ul >
-                    <li >
-                        <div class="img-relative " >
-                            <a href="#" class="small-btn">€580 / day </a>
-                            <a href="#">   <img class="img" src="images/111.png" ></a>
-                            <div class="pictures_text">
-                                <div>
-                                    Delphia 47
-                                </div>
 
-                                <div>
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Gdańsk, Poland </a>
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Berths
-                                </div>
+                <?php
+                $args = array(
+                    'post_type' => 'boats_product',
+                    'posts_per_page' => 4 ,
+                );
+               $the_query = new WP_Query( $args );
+
+                if ($the_query->have_posts() ){
+                    echo '<ul>';
+
+                    while ($the_query->have_posts()) :
+                        $the_query-> the_post();
+
+                        echo '<li >';
+                        echo ' <div class="img-relative">';
+                        ?>
+                        <a class="img" href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
+                        <a class="small-btn" href="#">€ <?php the_field( 'boat_cost' ); ?> / <?php the_field( '_rental_period' ); ?></a>
+                        <div class="pictures_text">
+                            <div>
+                                <?php the_field( 'name_of_boat' ) ?>
+                            </div>
+                            <div>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <?php the_field( 'location' )  ?>
+
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <?php the_field( 'count_of_berths' ) ?>
+                                Berths
                             </div>
                         </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn">€950 / day </a>
-                            <a href="#">   <img class="img" src="images/222.png" ></a>
-                            <div class="pictures_text">
-                                <div>
-                                    Sense 55
-                                </div>
 
-                                <div >
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Portofino, Italy</a>
-                                    <i class="fa fa-users" aria-hidden="true"></i> 12 Berths
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn">€820 / day </a>
-                            <a href="#">   <img class="img" src="images/333.png" ></a>
-                            <div class="pictures_text">
-                                <div>
-                                    Crusier 51
-                                </div>
+                        <?php
+                        '</div>';
+                        '</li>';
+                    endwhile;
+                    echo '</ul>';
+                    wp_reset_postdata();
+                } else {
+                    echo '<p>no posts found</p>' ;
+                }
 
-                                <div >
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>Palma de Mallorca, Spain</a>
-                                    <i class="fa fa-users" aria-hidden="true"></i>10 Berths </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="img-relative">
-                            <a href="#" class="small-btn">€400 / day</a>
-                            <a href="#">   <img class="img" src="images/444.png" ></a>
-                            <div class="pictures_text">
-                                <div>
-                                    Crusier 41S
-                                </div>
+                ?>
 
-                                <div class="">
-                                    <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Lisbon, Portugal</a>
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Berths
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
             <div class="button_white">
                 <input class="btn_white find_padding" type="button" value="LOAD MORE BOATS">
 

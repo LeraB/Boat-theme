@@ -20,7 +20,7 @@ if ( ! function_exists( 'boat_setup' ) ) :
  * as indicating support for post thumbnails.
  */
     function enqueue_styles() {
-        wp_enqueue_style('main',get_template_directory_uri() . '/main.css');
+
         wp_enqueue_style('style',get_template_directory_uri() . '/style.css');
         wp_enqueue_style( 'whitesquare-style', get_stylesheet_uri());
         wp_register_style('font-style', 'http://fonts.googleapis.com/css?family=Oswald:400,300');
@@ -46,6 +46,7 @@ function boat_setup() {
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
+
 	/*
 	 * Let WordPress manage the document title.
 	 * By adding theme support, we declare that this theme does not use a
@@ -66,6 +67,8 @@ function boat_setup() {
 		'menu-1' => esc_html__( 'Primary', 'boat' ),
 	) );
 
+    add_theme_support( 'post-thumbnails', array( 'destinations_product' ) );
+    add_theme_support( 'post-thumbnails', array( 'boats_product' ) );
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
@@ -82,6 +85,7 @@ function boat_setup() {
 	add_theme_support( 'custom-background', apply_filters( 'boat_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
+        'default-text' => '',
 	) ) );
 
 	// Add theme support for selective refresh for widgets.
@@ -107,6 +111,14 @@ add_action( 'after_setup_theme', 'boat_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
+/*add_theme_support( 'custom-logo', array(
+    'height'      => 100,
+    'width'       => 400,
+    'flex-height' => true,
+    'flex-width'  => true,
+    ) );
+*/
+    add_theme_support( 'custom-logo' );
 function boat_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'boat' ),
@@ -156,7 +168,7 @@ require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
- */
+     */
 require get_template_directory() . '/inc/customizer.php';
 
 /**
@@ -164,7 +176,7 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/custom-post-types.php';
 
-
+add_action( 'admin_enqueue_scripts', 'function_name' );
 
 /**
  * Load Jetpack compatibility file.
@@ -252,7 +264,7 @@ register_sidebar( array(
     'name' => __( 'Section 4 text', '' ),
     'id' => 'Section-4-text',
     'description' => __( '', '' ),
-    'before_widget' => '<div id="#text-block">',
+    'before_widget' => '<div >',
     'after_widget' => '</div>',
     'before_title' => '<h1>',
     'after_title' => '</h1>',
@@ -310,6 +322,7 @@ function sk_register_theme_customizer( $wp_customize ){
                 'section'		=> 'sk_section_home_top',
                 'label'			=> __( 'Background Image', 'theme-slug' ),
                 'description'	=> __( 'Select the image to be used .', 'theme-slug' )
+
             )
         )
     );
@@ -365,83 +378,16 @@ function home_block_bg(){
     get_theme_mod( 'sk_home_top_background_image');?>")
     ;} </style>
 <?php }
-function logo_register_theme_customizer( $wp_customize ){
 
-    if ( ! isset( $wp_customize ) ) {
-        return;
-    }
-
-    $wp_customize->add_section(
-
-        'logo_section_home_top',
-        // $args
-        array(
-            'title'		    => __( 'Logo', 'theme-slug' ),
-            // 'description'	=> __( 'Some description for the options in the Home Top section', 'theme-slug' ),
-            'active_callback' => 'is_front_page',
-        )
-    );
-
-    /**
-     * Add 'Home Top Background Image' Setting.
-     */
-    $wp_customize->add_setting(
-    // $id
-        'logo_background_image',
-        // $args
-        array(
-            'default'		=> get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg',
-            'sanitize_callback'	=> 'esc_url_raw',
-            'transport'		=> 'postMessage'
-        )
-    );
-
-    /**
-     * Add 'Home Top Background Image' image upload Control.
-     */
-    $wp_customize->add_control(
-        new WP_Customize_Image_Control(
-        // $wp_customize object
-            $wp_customize,
-            // $id
-            'logo_background_image',
-            // $args
-            array(
-                'settings'		=> 'logo_background_image',
-                'section'		=> 'logo_section_home_top',
-                'label'			=> __( 'Logo Image', 'theme-slug' ),
-                'description'	=> __( 'Select the image to be used .', 'theme-slug' )
-            )
-        )
-    );
-
-}
 
 // Settings API options initilization and validation.
-add_action( 'customize_register', 'logo_register_theme_customizer' );
+
 
 /**
  * Writes the Home Top background image out to the 'head' element of the document
  * by reading the value from the theme mod value in the options table.
  */
-function logo_customizer_css() {
-    ?>
-    <style type="text/css">
-        <?php
-            if ( get_theme_mod( 'logo_background_image' ) ) {
-                $home_top_background_image_url = get_theme_mod( 'logo_background_image' );
-            } else {
-                $home_top_background_image_url = get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg';
-            }
-            // if ( 0 < count( strlen( ( $home_top_background_image_url = get_theme_mod( 'sk_home_top_background_image', sprintf( '%s/images/minimography_005_orig.jpg', get_stylesheet_directory_uri() ) ) ) ) ) ) { ?>
-        .home-top {
-            background-image: url( <?php echo $home_top_background_image_url; ?> );
-        }
-        <?php // } // end if ?>
-    </style>
-    <?php
-} // end sk_customizer_css
-add_action( 'wp_head', 'logo_customizer_css');
+
 /**
  * Registers the Theme Customizer Preview with WordPress.
  *

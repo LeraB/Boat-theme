@@ -11,11 +11,12 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
     <header id="masthead" class="site-header" role="banner">
-        <style> .have_block{background-image: url(" <?php echo
-    get_theme_mod( 'logo_background_image');?>")
-            ;} </style>
-         <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
 
+
+         <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
+             <div class="log">
+             <?php  the_custom_logo();   ?>
+             </div>
         <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
     </nav>
 
