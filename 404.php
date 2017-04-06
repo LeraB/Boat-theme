@@ -13,14 +13,15 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 			<section class="error-404 not-found">
-				<header class="page_background_header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'boat' ); ?></h1>
-				</header><!-- .page-header -->
 
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'boat' ); ?></p>
+				<div class="text-center">
 
-
+                    <h1>
+                        Sorry! Page not found.
+                    </h1>
+                    <h2>
+                        The article you requested has either been moved or removed from the site.
+                    </h2>
 
 				</div><!-- .page-content -->
 			</section><!-- .error-404 -->

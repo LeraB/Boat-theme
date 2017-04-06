@@ -21,6 +21,8 @@ if ( ! function_exists( 'boat_setup' ) ) :
  */
     function enqueue_styles() {
 
+        wp_enqueue_style('slick_style',get_template_directory_uri() . '/slick/slick.css');
+        wp_enqueue_style('slick_style_theme',get_template_directory_uri() . '/slick/slick-theme.css');
         wp_enqueue_style('style',get_template_directory_uri() . '/style.css');
         wp_enqueue_style( 'whitesquare-style', get_stylesheet_uri());
         wp_register_style('font-style', 'http://fonts.googleapis.com/css?family=Oswald:400,300');
@@ -135,29 +137,41 @@ add_action( 'widgets_init', 'boat_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-//function load_custom_wp_admin_style() {
-//    admin_enqueue_scripts( 'google_location', get_template_directory_uri() . '/js/google_location.js', array(), '', true );
-//    wp_enqueue_script( 'custom_wp_admin_css' );
-//}
-//add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+add_action('in_admin_footer', 'foot_monger');
+function foot_monger () {  ?>
+    <script type='text/javascript'>
+        var autocomplete;
 
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('acf-field-location')),
+                {types: ['(cities)']});
+        }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZDkoDBNBQdFTvMIRoWC451q_V1gBKvYM&libraries=places&language=en&callback=initAutocomplete" async defer></script>
+    <?php
+}
 function boat_scripts() {
-	wp_enqueue_style( 'boat-style', get_stylesheet_uri() );
+    wp_enqueue_script( 'JQuery', get_template_directory_uri() . '/js/jquery-3.2.0.js', array(), '20151215', true );
+
+    wp_enqueue_style( 'boat-style', get_stylesheet_uri() );
     wp_enqueue_script( 'jquery' );
-
-    wp_register_script('location', 'http://maps.googleapis.com/maps/api/js?key=AIzaSyAZDkoDBNBQdFTvMIRoWC451q_V1gBKvYM&sensor=false&amp;libraries=places');
-
-
     wp_enqueue_script( 'boat-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-
     wp_enqueue_script( 'boat-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+    wp_enqueue_script( 'slick_js', get_template_directory_uri() . '/slick/slick.min.js', array(), '20151215', true );
+    wp_enqueue_script( 'slick_js_script', get_template_directory_uri() . '/js/slick_js.js', array(), '', true );
+
+    wp_enqueue_script( 'masonry', get_template_directory_uri() . '/js/masonry.js.pkgd.min.js', array(), '', true );
+
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'boat_scripts' );
+
+
+
 
 /**
  * Implement the Custom Header feature.
@@ -191,6 +205,7 @@ require get_template_directory() . '/inc/custom-post-type.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
 
 function font_awesome() {
     if (!is_admin()) {
@@ -279,6 +294,16 @@ register_sidebar( array(
     'after_title' => '</h1>',
 ) );
 
+register_sidebar( array(
+    'name' => __( 'Search', '' ),
+    'id' => 'Search',
+    'description' => __( '', '' ),
+    'before_widget' => '<div >',
+    'after_widget' => '</div>',
+    'before_title' => '',
+    'after_title' => '',
+) );
+
 function sk_register_theme_customizer( $wp_customize ){
 
     /*
@@ -341,6 +366,66 @@ function sk_register_theme_customizer( $wp_customize ){
 // Settings API options initilization and validation.
 add_action( 'customize_register', 'sk_register_theme_customizer' );
 
+function sk_register_header_customizer( $wp_customize ){
+
+    /*
+     * Failsafe is safe
+     */
+    if ( ! isset( $wp_customize ) ) {
+        return;
+    }
+
+    /**
+     * Add 'Home Top' Section.
+     */
+    $wp_customize->add_section(
+    // $id
+        'sk_section_header_bg',
+        // $args
+        array(
+            'title'		    => __( 'Section header background', 'theme-slug' ),
+            // 'description'	=> __( 'Some description for the options in the Home Top section', 'theme-slug' ),
+            'active_callback' => 'is_front_page',
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' Setting.
+     */
+    $wp_customize->add_setting(
+    // $id
+        'sk_header_bg_image',
+        // $args
+        array(
+            'default'		=> get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg',
+            'sanitize_callback'	=> 'esc_url_raw',
+            'transport'		=> 'postMessage'
+        )
+    );
+
+    /**
+     * Add 'Home Top Background Image' image upload Control.
+     */
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+        // $wp_customize object
+            $wp_customize,
+            // $id
+            'sk_header_bg_image',
+            // $args
+            array(
+                'settings'		=> 'sk_header_bg_image',
+                'section'		=> 'sk_section_header_bg',
+                'label'			=> __( 'Background Image', 'theme-slug' ),
+                'description'	=> __( 'Select the image to be used .', 'theme-slug' )
+
+            )
+        )
+    );
+}
+// Settings API options initilization and validation.
+add_action( 'customize_register', 'sk_register_header_customizer' );
+
 /**
  * Writes the Home Top background image out to the 'head' element of the document
  * by reading the value from the theme mod value in the options table.
@@ -349,8 +434,8 @@ function sk_customizer_css() {
     ?>
     <style type="text/css">
         <?php
-            if ( get_theme_mod( 'sk_home_top_background_image' ) ) {
-                $home_top_background_image_url = get_theme_mod( 'sk_home_top_background_image' );
+            if ( get_theme_mod( 'sk_register_header_customizer' ) ) {
+                $home_top_background_image_url = get_theme_mod( 'sk_header_bg_image' );
             } else {
                 $home_top_background_image_url = get_stylesheet_directory_uri() . '/images/minimography_005_orig.jpg';
             }

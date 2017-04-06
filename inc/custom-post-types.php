@@ -1,9 +1,10 @@
+﻿
 <?php
 /**
- * Set up the WordPress core custom header feature.
- *
- * @uses boat-themes
- */
+* Set up the WordPress core custom header feature.
+*
+* @uses boat-themes
+*/
 
 
 function create_post_type_destinations() {
@@ -28,8 +29,7 @@ function create_post_type() {
         array(
             'labels' => array(
                 'name' => __( 'Boats' ),
-                'singular_name' => __( 'Boats'),
-
+                'singular_name' => __( 'Boats')
             ),
             'public' => true,
             'has_archive' => true,
@@ -40,9 +40,6 @@ function create_post_type() {
 }
 
 add_action( 'init', 'create_post_type' );
-
-
-
 
 
 /*function create_project_type() {

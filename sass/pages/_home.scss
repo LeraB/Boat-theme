@@ -31,7 +31,7 @@ body {
 }
 
   .have_block{
-    background-image: url("/image/two_block_whith_pictures.png") center;
+    background: url("image/two_block_whith_pictures.png") center;
     background-repeat: no-repeat;
     border-top: 1px solid #333;
     -webkit-background-size: cover;
@@ -52,7 +52,10 @@ body {
   }
 
    }
-
+.text-center{
+  padding: 50px 0;
+  text-align: center;
+}
 
 .img-relative{
   position: relative;

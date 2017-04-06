@@ -18,28 +18,45 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
-    <header id="masthead" class="site-header" role="banner">
 
-
-         <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
-             <div class="log">
-             <?php  the_custom_logo();   ?>
-             </div>
-        <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
-    </nav>
-
-
+    <div id="page" class="site">
+        <header id="masthead" class="site-header" role="banner">
+            <?php if(is_front_page()){ ?><style> header{background: url(" <?php echo
+                             get_theme_mod( 'sk_header_bg_image');?>") center  ;} </style>
+            <?php }else{ ?> <style> header{background: url(" <?php echo
+                             get_theme_mod( 'sk_header_bg_image');?>") center;
+                    padding-top: 40px;
+                    padding-bottom: 20px;
+                } </style>
+            <?php }?>
+<?php
+if(is_front_page()){
+?>
+    <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
+        <div class="log">
+            <?php  the_custom_logo();   ?>
+            </div>
+            <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
+            </nav>
 <div class="header_text">
         <h1><?php bloginfo('name')?></h1>
         <h2><?php bloginfo('description')?></h2>
 </div>
-<form action="#" >
-    <input class="search_field form_location" type="text" name="request" placeholder="WHAT IS YOUR DESTINATION,SAILOR?">
-    <input class="search_submit_two" type="button" value="FIND A BOAT">
-</form>
+
+        <?php get_search_form();
+
+} else{
+  ?>
+        <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
+            <div class="log">
+                <?php  the_custom_logo();   ?>
+                    </div>
+                    <?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
+                </nav>
 
 
-
+            <?php
+}
+        ?>
 
 </header>

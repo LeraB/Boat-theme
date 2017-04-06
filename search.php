@@ -9,40 +9,36 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+    <section id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
 
-		<?php
-		if ( have_posts() ) : ?>
+            <form role="search" method="get" id="searchform" action="<?php echo home_url('/') ?>">
+                <input class="search_field form_location" type="text" value="<?php echo get_search_query() ?>"
+                       placeholder="WHAT IS YOUR DESTINATION,SAILOR?" name="s" id="s">
+                <input class="search_submit_two" type="submit" id="searchsubmit" value="FIND A BOAT">
+            </form>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'boat' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+            <?php
+            if (have_posts()) : ?>
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+                <header class="page-header">
+                </header><!-- .page-header -->
+                <h1 class="page-title"><?php printf(esc_html__('Search Results for: %s', 'boat'), '<span>' . get_search_query() . '</span>'); ?></h1>
 
-			endwhile;
+                h1>Поиск по: "<?php echo $_GET['s']; ?>"</h1>
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                    <?php the_content(''); ?>
+                <?php endwhile;
+                else: ?>
+                    <p>Поиск не дал результатов.</p>
+                <?php endif;
+            endif; ?>
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+        </main><!-- #main -->-->
+    </section><!-- #primary -->-->
 
 <?php
-get_sidebar();
 get_footer();
+
