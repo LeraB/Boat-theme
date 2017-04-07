@@ -8,7 +8,6 @@
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZDkoDBNBQdFTvMIRoWC451q_V1gBKvYM&sensor=false&amp;libraries=places"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-    <script src="/jquery.geocomplete.min.js"></script>
     <script>
 
 
@@ -18,6 +17,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+
 
     <div id="page" class="site">
         <header id="masthead" class="site-header" role="banner">
@@ -45,7 +45,19 @@ if(is_front_page()){
 
         <?php get_search_form();
 
+   //dynamic_sidebar('Search form');
 } else{
+    if (is_search()) {
+        ?>
+        <nav id="site-navigation" class="main-navigation clearfix" role="navigation">
+            <div class="log">
+                <?php the_custom_logo(); ?>
+            </div>
+            <?php wp_nav_menu(array('theme_location' => 'menu-1', 'menu_id' => 'primary-menu')); ?>
+        </nav>
+        <?php get_search_form();
+
+    }else{
   ?>
         <nav  id="site-navigation" class="main-navigation clearfix" role="navigation">
             <div class="log">
@@ -56,7 +68,7 @@ if(is_front_page()){
 
 
             <?php
-}
+}}
         ?>
 
 </header>
