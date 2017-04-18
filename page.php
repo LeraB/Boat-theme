@@ -65,12 +65,17 @@ get_header(); ?>
                     while ($the_query->have_posts()) :
                         $the_query->the_post();
 
-                        ?>
+                            $value =  get_field('wide_picture');
 
-                        <div class="grid-sizer">
-                        <div class="grid-item">
-                        <div class="grid-item grid-item--width2">
+                        $css_class = '';
+                                $css_size = 'grid-sizer';
+                            if(is_array($value) && ($value[0] == true)) {
+                                $css_class = 'grid-item-wide';
+                                $css_size = '';
 
+                            }  ?>
+
+                            <div class="grid-item <?php echo $css_class; ?> ">
                                     <div class="img-relative">
                                         <a class="sailboat "
                                            href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
@@ -85,22 +90,22 @@ get_header(); ?>
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
+
+
                         <?php
 
                     endwhile;
 
                     wp_reset_postdata();
-                } else {
+                }else {
                     echo '<p>no posts found</p>';
                 }
                 ?>
             </div>
 
 
-            <div class="button_white">
-                <a href="#"><input type="button" value="EXPLORE MORE DESTINATIONS"></a>
+            <div class="button_white" >
+                <a href="http://wptest.ru/all/" id="moreboat" class="btn_white find_padding" type="button"> EXPLORE MORE DESTINATIONS </a>
             </div>
 
         </section>
@@ -110,6 +115,7 @@ get_header(); ?>
                 <style> .have_block {
                         background: url(" <?php echo
                              get_theme_mod( 'sk_home_top_background_image');?>") center;
+                        background-size: cover;
                     } </style>
                 <div class="button_red">
                     <div class="btn_white btn_make " id="section-4-btn">
@@ -122,7 +128,7 @@ get_header(); ?>
         <section class="my-container block_pictures_two">
             <h2>FEATURED BOATS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
-            <div>
+            <div class="grid">
 
                 <?php
                 $args = array(
@@ -132,14 +138,24 @@ get_header(); ?>
                 $the_query = new WP_Query($args);
 
                 if ($the_query->have_posts()) {
-                    echo '<ul>';
+
 
                     while ($the_query->have_posts()) :
                         $the_query->the_post();
+                $value =  get_field('wide_picture');
 
-                        echo '<li >';
-                        echo ' <div class="img-relative">';
-                        ?>
+                $css_class = '';
+                $css_size = 'grid-sizer';
+                if(is_array($value) && ($value[0] == true)) {
+                    $css_class = 'grid-item-wide';
+                    $css_size = '';
+
+                }  ?>
+
+                <div class="grid-item grid-item-two <?php echo $css_class; ?> ">
+
+
+                    <div class="img-relative">
                         <a class="img" href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
                         <a class="small-btn" href="#">€ <?php the_field('boat_cost'); ?>
                             / <?php the_field('_rental_period'); ?></a>
@@ -156,21 +172,22 @@ get_header(); ?>
                                 Berths
                             </div>
                         </div>
-
+                    </div>
+                </div>
                         <?php
-                        '</div>';
-                        '</li>';
+
+
                     endwhile;
-                    echo '</ul>';
+
                     wp_reset_postdata();
                 } else {
                     echo '<p>no posts found</p>';
                 }
 
                 ?>
-
+            </div>
                 <div class="button_white">
-                    <input class="btn_white find_padding" type="button" value="LOAD MORE BOATS">
+                    <a href="http://wptest.ru/all-boat/" class="btn_white find_padding" type="button"> LOAD MORE BOATS  </a>
 
                 </div>
         </section>

@@ -1,6 +1,43 @@
-@media (min-width:319px) and ( max-width: 767px) {
+@media (min-width: 319px) and (max-width: 767px) {
 
   header {
+    .log {
+      margin-left: 20%;
+    }
+    ul {
+      text-align: center;
+      padding: 15px;
+      li {
+        padding-top: 20px;
+        a {
+          font-size: 25px;
+          padding: 11px 70px;
+        }
+      }
+
+    }
+
+    #searchform {
+      padding-left: 0;
+      text-align: left;
+      margin-left: 10%;
+
+      .search_field {
+
+        font-size: 10px;
+        width: 60%;
+      }
+      .search_submit_two {
+        padding: 13px 0px;
+        width: 25%;
+        background-position: center;
+        span {
+          visibility: hidden;
+        }
+
+      }
+    }
+
     padding-bottom: 150px;
     .header_text {
       margin-top: 10px;
@@ -23,32 +60,69 @@
   }
 
   main {
+
+    .number_block {
+      display: block;
+      li {
+        max-width: 100%;
+        padding: 20px 0 10px 0;
+        text-align: center;
+        width: 100%;
+        .numbers_text {
+          .textwidget {
+            font-size: 30px;
+          }
+          .numbers {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+
+    .numbers_border {
+      padding-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+    }
+
     .block_pictures_two {
       ul {
         display: block;
         padding-bottom: 0;
         padding-left: 0;
-
+      }
+      .grid {
+        .grid-item {
+          width: 100%;
+        }
       }
     }
 
     .block_pictures {
-
-      li:first-child {
-        width: 100%;
-        .pictures_text_two {
-          bottom: 30px;
+      .grid {
+        .grid-item {
+          width: 100%;
         }
       }
-      h2 {
-        padding-top: 0;
-      }
-      p {
-        font-size: 15px;
-      }
+    }
+    .small-btn-two {
+      padding: 15px 25px;
+      background-position: 10%;
+    }
+    .pictures_text {
+      font-size: 30px;
+    }
+    h2 {
+      padding-top: 0;
+    }
+    p {
+      font-size: 25px;
     }
 
     .have_block {
+      ul {
+        padding: 0px 10px;
+        width: 100%;
+      }
 
       h1 {
         font-size: 40px;
@@ -60,31 +134,90 @@
         padding-bottom: 0;
       }
     }
-    .button_white {
-      padding-bottom: 0;
+    .small-btn {
+      padding: 15px 20px;
     }
   }
 
-  @media (min-width: 768px) and (max-width: 991px) {
-
-    header {
-      input[type=submit] {
-        width: 18%;
-      }
-    }
-
-    main {
-      .block_pictures {
-        p {
-          font-size: 15px;
-        }
-      }
-      .block_pictures_two {
-        ul {
-          padding-bottom: 20px;
-        }
-      }
-    }
-
+  .grid-item, .grid-sizer, .grid-item-wide, .grid-item-wide {
+    width: 100%;
   }
+  .grid-item.grid-item-wide, grid-sizer.grid-item-wide {
+    width: 100%;
+  }
+
+  footer {
+    .footer-wid-block {
+      text-align: center;
+      padding: 0;
+      display: block;
+      width: 100%;
+      float: none;
+      h4 {
+        font-size: 20px;
+      }
+      .social_button {
+        padding-left: 20%;
+      }
+      .footer-sml-block {
+        padding: 20px 0;
+        width: 100%;
+        font-size: 25px;
+      }
+    }
+  }
+
 }
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  header {
+    padding-top: 0px;
+    padding-bottom: 200px;
+    nav ul {
+      float: none;
+      text-align: center;
+      padding-top: 5%;
+      a {
+        font-size: 30px;
+        padding: 20px 40px;
+      }
+
+    }
+    #searchform {
+      padding-left: 0;
+      text-align: left;
+      margin-left: 10%;
+
+      .search_field {
+        font-size: 20px;
+        width: 60%;
+      }
+      .search_submit_two {
+        font-size: 20px;
+        width: 25%;
+
+      }
+    }
+  }
+
+  main {
+    .numbers_text .textwidget {
+      font-size: 17px;
+    }
+    .block_pictures {
+      padding-bottom: 0px;
+      p {
+        font-size: 15px;
+      }
+    }
+    .block_pictures_two {
+      ul {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+}
+
+

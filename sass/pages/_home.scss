@@ -30,28 +30,33 @@ body {
   position: relative;
 }
 
-  .have_block{
-    background: url("image/two_block_whith_pictures.png") center;
-    background-repeat: no-repeat;
-    border-top: 1px solid #333;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding-bottom: 30px;
-    padding-top: 30px;
-    h1{
-      padding-top: 158px;
-      text-align: center;
 
-    }
-    .textwidget{
-      padding: 30px 0 86px 0;
-      text-align: center;
-    }
-  }
 
    }
+
+.have_block{
+  background: url("image/222.png") center;
+  background-repeat: no-repeat;
+  border-top: 1px solid #333;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ul a{
+  display: block;
+  font-size: 15px;
+}
+  h1{
+    padding-top: 158px;
+    text-align: center;
+
+  }
+  .textwidget{
+    padding: 30px 0 86px 0;
+    text-align: center;
+  }
+}
+
 .text-center{
   padding: 50px 0;
   text-align: center;

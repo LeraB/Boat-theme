@@ -14,42 +14,60 @@
       padding-top: 10px;
     }
 
-    a{
+    a {
       text-decoration: none;
     }
   }
 }
+
 .grid {
 
 }
 
-
-
-.grid-sizer,
-.grid-item { width: 30%; }
-.grid-item--width2 { width: 60%; }
-
-
-
-  .block_pictures {
-    @extend .block_pictures_two;
-
-  }
-  .pictures_text {
-    bottom: 40px;
-    left: 30px;
-    position: absolute;
-    span {
-      display: block;
-      margin-top: 7px;
-
+//.grid-item-wide{
+//  width: 66% !important;
+//}
+.grid-item, grid-sizer {
+  margin: 2px;
+  width: 30%;
+  max-width: 100%;
+  .img-relative {
+    .wp-post-image {
+      max-width: 100%;
     }
   }
-  .pictures_text_two {
-    @extend .pictures_text;
-    bottom: 50px;
-  }
 
-.position_r{
+  &.grid-item-wide {
+    width: 62%;
+  }
+}
+
+.grid-item-two {
+  width: 45% ;
+  margin: 2px;
+}
+
+.block_pictures {
+  @extend .block_pictures_two;
+
+}
+
+.pictures_text {
+  bottom: 40px;
+  left: 30px;
+  position: absolute;
+  span {
+    display: block;
+    margin-top: 7px;
+
+  }
+}
+
+.pictures_text_two {
+  @extend .pictures_text;
+  bottom: 50px;
+}
+
+.position_r {
   position: relative;
 }

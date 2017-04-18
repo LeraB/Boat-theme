@@ -8,8 +8,10 @@
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZDkoDBNBQdFTvMIRoWC451q_V1gBKvYM&sensor=false&amp;libraries=places"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-    <script>
-
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var blogload = {"ajaxurl":"http:\/\/wptest.ru\/wp-admin\/admin-ajax.php"};
+        /* ]]> */
 
     </script>
 
@@ -22,9 +24,9 @@
     <div id="page" class="site">
         <header id="masthead" class="site-header" role="banner">
             <?php if(is_front_page()){ ?><style> header{background: url(" <?php echo
-                             get_theme_mod( 'sk_header_bg_image');?>") center  ;} </style>
+                             get_theme_mod( 'sk_header_bg_image');?>") no-repeat center  ;} </style>
             <?php }else{ ?> <style> header{background: url(" <?php echo
-                             get_theme_mod( 'sk_header_bg_image');?>") center;
+                             get_theme_mod( 'sk_header_bg_image');?>") no-repeat center;
                     padding-top: 40px;
                     padding-bottom: 20px;
                 } </style>

@@ -1,16 +1,13 @@
+var  $grid;
+
 jQuery(document).ready(function ($) {
-    $('.grid').masonry({
-        // use element for option
-        itemSelector: '.grid-item',
-        percentPosition: true,
-                  // use outer width of grid-sizer for columnWidth
-        columnWidth: 200
-
-
-       // persentPosition: true
+    $grid =  $('.grid').masonry({
+        columnWidth: 20,
+        itemSelector: '.grid-item'
 
     });
 });
+
 
 
 var target='.find-block';

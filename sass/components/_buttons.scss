@@ -1,12 +1,14 @@
 .button_white {
   text-align: center;
+  padding-top: 30px;
   padding-bottom: 30px;
-  input {
+  a {
     border: 1px solid #dedede;
     border-radius: 5px;
     background-color: $white;
     padding: 10px 25px;
-
+    color: black;
+    text-decoration: none;
     &:hover {
       background-color: $pink;
       color:$white;
@@ -34,6 +36,10 @@
  }
   .button_red {
     @extend .button_white;
+    width: 30%;
+    padding-left: 35%;
+    padding-right: 35%;
+
     input {
       border: 1px solid $pink;
       background-color: $pink;
