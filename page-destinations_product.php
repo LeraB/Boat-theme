@@ -72,7 +72,7 @@ get_header(); ?>
         ?>
     </div>
 
-    <div class="button_white" id="blog_true_loadmore">
+    <div class="button_white" id="blog_true">
         <a href=" " class="btn_white find_padding"  type="button"> MORE DESTINATIONS </a>
     </div>
     <script>
@@ -83,7 +83,7 @@ get_header(); ?>
 
     <script>
         var blog_true_posts = '<?php echo serialize($the_query->query_vars); ?>';
-
+        var postt = 'dist'
     </script>
 
 </section>

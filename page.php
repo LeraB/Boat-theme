@@ -65,31 +65,31 @@ get_header(); ?>
                     while ($the_query->have_posts()) :
                         $the_query->the_post();
 
-                            $value =  get_field('wide_picture');
+                        $value = get_field('wide_picture');
 
                         $css_class = '';
-                                $css_size = 'grid-sizer';
-                            if(is_array($value) && ($value[0] == true)) {
-                                $css_class = 'grid-item-wide';
-                                $css_size = '';
+                        $css_size = 'grid-sizer';
+                        if (is_array($value) && ($value[0] == true)) {
+                            $css_class = 'grid-item-wide';
+                            $css_size = '';
 
-                            }  ?>
+                        } ?>
 
-                            <div class="grid-item <?php echo $css_class; ?> ">
-                                    <div class="img-relative">
-                                        <a class="sailboat "
-                                           href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
-                                        <a class="small-btn-two"
-                                           href="#">  <?php the_field('count_of_destination') ?></a>
-                                        <div class="pictures_text">
-                                            <?php the_field('destination_name') ?>
-                                            <span>
+                        <div class="grid-item <?php echo $css_class; ?> ">
+                            <div class="img-relative">
+                                <a class="sailboat "
+                                   href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
+                                <a class="small-btn-two"
+                                   href="#">  <?php the_field('count_of_destination') ?></a>
+                                <div class="pictures_text">
+                                    <?php the_field('destination_name') ?>
+                                    <span>
                                 <?php the_field('location_of_destination_') ?>
                                 </span>
-                                        </div>
-                                    </div>
-
                                 </div>
+                            </div>
+
+                        </div>
 
 
                         <?php
@@ -97,15 +97,16 @@ get_header(); ?>
                     endwhile;
 
                     wp_reset_postdata();
-                }else {
+                } else {
                     echo '<p>no posts found</p>';
                 }
                 ?>
             </div>
 
 
-            <div class="button_white" >
-                <a href="http://wptest.ru/all/" id="moreboat" class="btn_white find_padding" type="button"> EXPLORE MORE DESTINATIONS </a>
+            <div class="button_white">
+                <a href="http://wptest.ru/all/" id="moreboat" class="btn_white find_padding" type="button"> EXPLORE MORE
+                    DESTINATIONS </a>
             </div>
 
         </section>
@@ -142,38 +143,38 @@ get_header(); ?>
 
                     while ($the_query->have_posts()) :
                         $the_query->the_post();
-                $value =  get_field('wide_picture');
+                        $value = get_field('wide_picture');
 
-                $css_class = '';
-                $css_size = 'grid-sizer';
-                if(is_array($value) && ($value[0] == true)) {
-                    $css_class = 'grid-item-wide';
-                    $css_size = '';
+                        $css_class = '';
+                        $css_size = 'grid-sizer';
+                        if (is_array($value) && ($value[0] == true)) {
+                            $css_class = 'grid-item-wide';
+                            $css_size = '';
 
-                }  ?>
+                        } ?>
 
-                <div class="grid-item grid-item-two <?php echo $css_class; ?> ">
+                        <div class="grid-item grid-item-two <?php echo $css_class; ?> ">
 
 
-                    <div class="img-relative">
-                        <a class="img" href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
-                        <a class="small-btn" href="#">€ <?php the_field('boat_cost'); ?>
-                            / <?php the_field('_rental_period'); ?></a>
-                        <div class="pictures_text">
-                            <div>
-                                <?php the_field('name_of_boat') ?>
-                            </div>
-                            <div>
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <?php the_field('location') ?>
+                            <div class="img-relative">
+                                <a class="img" href="<?php the_permalink() ?>"><?php the_post_thumbnail() ?></a>
+                                <a class="small-btn" href="#">€ <?php the_field('boat_cost'); ?>
+                                    / <?php the_field('_rental_period'); ?></a>
+                                <div class="pictures_text">
+                                    <div>
+                                        <?php the_field('name_of_boat') ?>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <?php the_field('location') ?>
 
-                                <i class="fa fa-users" aria-hidden="true"></i>
-                                <?php the_field('count_of_berths') ?>
-                                Berths
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <?php the_field('count_of_berths') ?>
+                                        Berths
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                         <?php
 
 
@@ -186,10 +187,10 @@ get_header(); ?>
 
                 ?>
             </div>
-                <div class="button_white">
-                    <a href="http://wptest.ru/all-boat/" class="btn_white find_padding" type="button"> LOAD MORE BOATS  </a>
+            <div class="button_white">
+                <a href="http://wptest.ru/all-boat/" class="btn_white find_padding" type="button"> LOAD MORE BOATS </a>
 
-                </div>
+            </div>
         </section>
 
     </main>

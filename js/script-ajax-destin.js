@@ -1,15 +1,14 @@
 jQuery(function ($) {
 
 
-    $('#blog_true_loadmore a').click(function (e) {
+    $('#blog_true a').click(function (e) {
 
         e.preventDefault();
 
         var data = {
             'action': 'blog_load',
             'query': blog_true_posts,
-            'page': blog_current_page,
-            'post_type': postt
+            'page': blog_current_page
         };
 
         function getItemElement(data) {
@@ -41,10 +40,10 @@ jQuery(function ($) {
                     blog_current_page++;
 
                     $grid.append($elems).masonry('appended', $elems);
-
+                    console.log(blog_current_page);
+                    console.log(blog_max_pages);
                     if (blog_current_page == blog_max_pages) {
-
-                        $("#blog_true_loadmore").css('display', 'none');
+                        $("#blog_true").css('display', 'none');
 
 
 

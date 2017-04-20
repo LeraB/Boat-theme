@@ -91,6 +91,7 @@ get_header(); ?>
 
     <script>
         var blog_true_posts = '<?php echo serialize($the_query->query_vars); ?>';
+        var postt = 'boat';
 
     </script>
 <?php

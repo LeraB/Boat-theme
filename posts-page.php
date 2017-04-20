@@ -13,7 +13,6 @@ get_header(); ?>
 
 <main xmlns="http://www.w3.org/1999/html">
 <div>
-    <p>blablabla</p>
 
     <?php
     $args = array(
